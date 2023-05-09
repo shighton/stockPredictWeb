@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>Ice Cream Picker</title>
+    <title>Online Stock Prediction</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
     <script defer src="https://pyscript.net/latest/pyscript.js"></script>
@@ -21,7 +21,7 @@
         
         import pkg_resources
         import types
-        
+        from pyodide.http import open_url
         
         def get_imports():
             for name, val in globals().items():
@@ -44,7 +44,11 @@
         for r in requirements:
             print('{}=={}'.format(*r))
         
-        df = pd.read_csv('GOOG-year.csv') #'GSCP_5min.csv')
+        url = (
+            "https://raw.githubusercontent.com/shighton/stockPredictWeb/main/GOOG-year.csv"
+        )
+
+        df = pd.read_csv(open_url(url)) #'GSCP_5min.csv')
         print(df.head())
         
         
